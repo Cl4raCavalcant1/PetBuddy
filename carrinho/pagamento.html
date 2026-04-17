@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetBuddy | Finalizar Compra</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <div class="topbar">
+      <div class="container topbar-content">
+        <p>A Saúde do seu Animalzinho é na PetMed</p>
+        <a href="#" class="saiba-mais">Saber mais</a>
+      </div>
+    </div>
+  
+    <div class="navbar">
+      <div class="container nav-container-logado">
+        <a href="../Home/logado.html" class="logo-link">
+          <img src="../assets/Logo Principal.png" alt="Logo PetBuddy" class="logo">
+        </a>
+        <nav class="menu">
+          <a href="../Home/logado.html">Início</a>
+          <a href="#">Promoções</a>
+          <a href="#">PetMed</a>
+          <a href="#">PetLar</a>
+          <a href="#">Contato</a>
+        </nav>
+        <div class="user-actions">
+            <button class="btn-user">Clara Cavalcanti</button>
+            <div class="cart-icon-wrapper">
+                <div class="cart-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f7931e" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><path d="M3 6h18"></path><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                </div>
+                <span class="cart-count">3</span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <a href="carrinho.html" class="back-link"><span>❮</span> Voltar ao Carrinho</a>
+
+    <div class="checkout-wrapper">
+        <div class="checkout-glass-box">
+            
+            <section class="checkout-section">
+                <div class="section-title">Informações Pessoais</div>
+                <div class="input-grid">
+                    <input type="text" placeholder="Seu nome completo" class="full-width">
+                    <input type="email" placeholder="Seu email" class="full-width">
+                    <input type="text" placeholder="CPF/CNPJ" maxlength="18" oninput="mascaraCPF(this)">
+                    <div class="phone-group">
+                        <input type="text" placeholder="DDD" maxlength="2" style="width: 60px;" oninput="mascaraNumero(this)">
+                        <input type="text" placeholder="Celular" maxlength="10" style="flex: 1;" oninput="mascaraNumero(this)">
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-section">
+                <div class="section-title">Forma de Pagamento</div>
+                <div class="payment-methods">
+                    <button class="method-card active">💳 Cartão de crédito</button>
+                    <button class="method-card">📄 Boleto</button>
+                    <button class="method-card">🔹 PIX</button>
+                    <button class="method-card">🅿️ PayPal</button>
+                </div>
+
+                <div class="card-details-box">
+                    <div class="card-inputs">
+                        <input type="text" placeholder="Número do cartão" class="full-width" maxlength="19" oninput="mascaraCartao(this)">
+                        <input type="text" placeholder="Nome do titular como no cartão" class="full-width">
+                        <div class="row-3">
+                            <input type="text" placeholder="MM/AA" maxlength="5" oninput="mascaraValidade(this)">
+                            <input type="text" placeholder="CVC" maxlength="4" oninput="mascaraNumero(this)">
+                        </div>
+                        <div class="parcelas">
+                            <label>Opções de Parcelamento</label>
+                            <select>
+                                <option>1 x de R$ 398,40</option>
+                                <option>2 x de R$ 199,20</option>
+                                <option>3 x de R$ 132,80</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-preview">
+                        <div class="visual-card">
+                            <div class="chip"></div>
+                            <div class="number" id="card-display">**** **** **** ****</div>
+                            <div class="card-footer">
+                                <span id="name-display">NOME DO TITULAR</span>
+                                <span id="expiry-display">MM/AA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="checkout-footer">
+                <div class="summary-final">
+                    <div class="line"><span>Preço</span><span>R$ 408,40</span></div>
+                    <div class="line"><span>Desconto</span><span>- R$ 10,00</span></div>
+                    <div class="line total"><span>Total a Pagar</span><span>R$ 398,40</span></div>
+                </div>
+                <button class="btn-finalize-purchase">Comprar Agora</button>
+                <p class="terms">Ao continuar, você concorda com os <strong>Termos de Compra</strong> da PetBuddy.</p>
+            </section>
+
+        </div>
+    </div>
+  </main>
+
+  <script>
+    function mascaraNumero(input) {
+        input.value = input.value.replace(/\D/g, '');
+    }
+
+    function mascaraCPF(input) {
+        let v = input.value.replace(/\D/g, '');
+        if (v.length <= 11) {
+            v = v.replace(/(\d{3})(\d)/, '$1.$2');
+            v = v.replace(/(\d{3})(\d)/, '$1.$2');
+            v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+        } else {
+            v = v.replace(/^(\d{2})(\d)/, '$1.$2');
+            v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+            v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
+            v = v.replace(/(\d{4})(\d)/, '$1-$2');
+        }
+        input.value = v;
+    }
+
+    function mascaraCartao(input) {
+        let v = input.value.replace(/\D/g, '');
+        v = v.replace(/(\d{4})(\d)/g, '$1 $2').trim();
+        input.value = v;
+        document.getElementById('card-display').innerText = v || "**** **** **** ****";
+    }
+
+    function mascaraValidade(input) {
+        let v = input.value.replace(/\D/g, '');
+        if (v.length >= 3) {
+            v = v.substring(0, 2) + '/' + v.substring(2, 4);
+        }
+        input.value = v;
+    }
+  </script>
+</body>
+</html> 
